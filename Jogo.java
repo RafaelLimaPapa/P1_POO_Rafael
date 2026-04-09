@@ -7,7 +7,7 @@ public class Jogo {
         var gerador = new Random();
         var p1 = new Personagem("Jeferson");
 
-        while (true) {
+        while (true && p1.vivo == true) {
 
             var oQueFazer = gerador.nextInt(1, 4);
             var escolherItem = gerador.nextInt(1, 6);
@@ -26,12 +26,15 @@ public class Jogo {
                     p1.dormir();
                     break;
             }
-
             System.out.println(p1);
             System.out.println(p1.Mochila);
             System.out.println("**********************");
 
-            Thread.sleep(1000);
+            Thread.sleep(50);
+            p1.estaVivo();
         }
+        System.out.println("\n======FIM DE JOGO======");
+        System.out.println("====RELATORIO FINAL====");
+        System.out.println(p1.Mochila);
     }
 }

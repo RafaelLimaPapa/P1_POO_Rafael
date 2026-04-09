@@ -7,7 +7,7 @@ public class Personagem {
     private int energia;
     private int fome;
     private int sono;
-
+    public boolean vivo = true;
     public List<String> Mochila = new ArrayList<>();
 
     public Personagem(String nome) {
@@ -86,7 +86,11 @@ public class Personagem {
             System.out.println(nome + " sem sono");
         }
     }
-
+    public void estaVivo(){
+        if(energia == 0){
+            vivo = false;
+        }
+    }
     @Override
     public String toString() {
         return String.format(
