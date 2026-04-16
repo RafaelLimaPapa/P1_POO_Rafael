@@ -102,6 +102,34 @@ public class Personagem {
             System.out.println(nome + " sem sono");
         }
     }
+
+    public void duelo(Personagem adversario){
+        if (repertorio.size() == 0){
+            System.out.println(nome +" nao tem musicas, impossivel duelar");
+            System.out.println("**********************");
+            return;
+        }
+        System.out.println(nome +" iniciou um duelo");
+
+        var gerador = new Random();
+        var sorteio = gerador.nextInt(repertorio.size());
+        Musica mDuelo = repertorio.get(sorteio);
+        if(adversario.getRepertorio().contains(mDuelo)){
+            energia--;
+            adversario.energia--;
+            System.out.println("Ambos conheciam a musica");
+            System.out.println("**********************");
+        }
+        else{
+            adversario.energia--;
+            adversario.getRepertorio().add(mDuelo);
+            System.out.println(nome +" Venceu o duelo");
+            System.out.println(adversario.nome +" Aprendeu a musica");
+            System.out.println("**********************");
+        }
+
+    }
+
     public void estaVivo(){
         if(energia == 0){
             vivo = false;

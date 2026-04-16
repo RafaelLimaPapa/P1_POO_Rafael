@@ -15,17 +15,18 @@ public class Jogo {
         repertorio.add(new Musica("Bad"));
         repertorio.add(new Musica("Love Never Felt So Good"));
         repertorio.add(new Musica("You Are Not Alone"));
+        
         var gerador = new Random();
-
         var p1 = new Personagem("Jeferson");
         var p2 = new Personagem("Tico Trovador",3,8,8);
         p2.getRepertorio().add(new Musica("Trovejou na Roca"));
-        while (p1.vivo == true || p2.vivo == true) {
-
+        while (p1.vivo || p2.vivo) {
             var oQueFazer = gerador.nextInt(1, 4);
             var escolherItem = gerador.nextInt(1, 6);
             var oQueFazer2 = gerador.nextInt(1, 6);
-            if(p1.vivo == true){
+            System.out.println("\n");
+            System.out.println("**********************");
+            if(p1.vivo){
                 switch (oQueFazer) {
                     case 1:{
                         p1.cacar(escolherItem);
@@ -43,6 +44,9 @@ public class Jogo {
                 p1.aprenderMusica((ArrayList<Musica>) repertorio);
             }else{
                 System.out.println(p1.nome +" esta morto");
+                System.out.println("**********************");
+                System.out.println(p2.nome + " VENCEU O JOGO");
+                System.out.println("**********************");
             }
 
             System.out.println(p1);
@@ -50,7 +54,7 @@ public class Jogo {
             System.out.println(p1.getRepertorio());
             System.out.println("**********************");
 
-            if(p2.vivo == true){
+            if(p2.vivo){
                 switch (oQueFazer2) {
                     case 1:{
                         p2.cacar(escolherItem);
@@ -69,15 +73,30 @@ public class Jogo {
                 
             }else{
                 System.out.println(p2.nome +" esta morto");
+                System.out.println("**********************");
+                System.out.println(p1.nome + " VENCEU O JOGO");
+                System.out.println("**********************");
             }
             System.out.println(p2);
             System.out.println(p2.getMochila());
             System.out.println(p2.getRepertorio());
             System.out.println("**********************");
-            Thread.sleep(5000);
             p1.estaVivo();
             p2.estaVivo();
+            
+            if(p1.vivo && p2.vivo){
+                var quemComeca = gerador.nextInt(1, 3);
+                if(quemComeca == 1){
+                    p1.duelo(p2);
+                }
+                else{
+                    p2.duelo(p1);
+                }
+                
+            }
+            Thread.sleep(5000);
         }
+        System.out.println();
         System.out.println("\n======FIM DE JOGO======");
         System.out.println("\n====RELATORIO FINAL====\n");
         System.out.println("Jogador " + p1.nome);
